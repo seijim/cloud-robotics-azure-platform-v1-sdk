@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ChoregrapheProject xmlns="http://www.aldebaran-robotics.com/schema/choregraphe/project.xsd" xar_version="3">
+    <Box name="root" id="-1" localization="8" tooltip="Root box of Choregraphe&apos;s behavior. Highest level possible." x="0" y="0">
+        <bitmap>media/images/box/root.png</bitmap>
+        <script language="4">
+            <content>
+                <![CDATA[]]>
+</content>
+        </script>
+        <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+        <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+        <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+        <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="ボックスBehaviorの終了時に信号を送る。" id="4" />
+        <Timeline enable="0">
+            <BehaviorLayer name="behavior_layer1">
+                <BehaviorKeyframe name="keyframe1" index="1">
+                    <Diagram>
+                        <Box name="Take Picture" id="7" localization="8" tooltip="Take a picture with one of the cameras camera and store it in his memory in ~/recordings/cameras. The image format is JPG.&#x0A;&#x0A;V1.1.0&#x0A;" x="118" y="175">
+                            <bitmap>media/images/box/interaction/picture.png</bitmap>
+                            <script language="4">
+                                <content>
+                                    <![CDATA[import time
+
+class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self, False)
+        self.resolutionMap = {
+            '160 x 120': 0,
+            '320 x 240': 1,
+            '640 x 480': 2,
+            '1280 x 960': 3
+        }
+        self.cameraMap = {
+            'Top': 0,
+            'Bottom': 1
+        }
+
+        self.recordFolder = os.path.normpath(ALFrameManager.getBehaviorPath(self.behaviorId))
+
+    def onLoad(self):
+        self.bIsRunning = False
+        try:
+            self.photoCapture = ALProxy( "ALPhotoCapture" )
+        except Exception as e:
+            self.photoCapture = None
+            self.logger.error(e)
+
+    def onUnload(self):
+        pass
+
+    def onInput_onStart(self):
+        if( self.bIsRunning ):
+            return
+        self.bIsRunning = True
+        resolution = self.resolutionMap[self.getParameter("Resolution")]
+        cameraID = self.cameraMap[self.getParameter("Camera")]
+        fileName = self.getParameter("File Name")
+        if self.photoCapture:
+            self.photoCapture.setResolution(resolution)
+            self.photoCapture.setCameraID(cameraID)
+            self.photoCapture.setPictureFormat("jpg")
+            self.photoCapture.takePicture( self.recordFolder, fileName )
+        self.bIsRunning = False
+        self.onStopped()]]>
+</content>
+                            </script>
+                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                            <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                            <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="3" />
+                            <Parameter name="Resolution" inherits_from_parent="0" content_type="3" value="640 x 480" default_value="640 x 480" custom_choice="0" tooltip="Image resolution." id="4">
+                                <Choice value="160 x 120" />
+                                <Choice value="320 x 240" />
+                                <Choice value="640 x 480" />
+                                <Choice value="1280 x 960" />
+                            </Parameter>
+                            <Parameter name="File Name" inherits_from_parent="0" content_type="3" value="image" default_value="image" custom_choice="0" tooltip="Name of the file without its extension." id="5" />
+                            <Parameter name="Camera" inherits_from_parent="0" content_type="3" value="Top" default_value="Top" custom_choice="0" tooltip="Enables to select the camera (Top or Bottom) that will take the picture." id="6">
+                                <Choice value="Top" />
+                                <Choice value="Bottom" />
+                            </Parameter>
+                        </Box>
+                        <Box name="Initialize" id="2" localization="8" tooltip="初期処理" x="115" y="35">
+                            <bitmap>media/images/box/box-diagram.png</bitmap>
+                            <script language="4">
+                                <content>
+                                    <![CDATA[]]>
+</content>
+                            </script>
+                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                            <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                            <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                            <Output name="onStopped" type="1" type_size="1" nature="2" inner="0" tooltip="ボックスBehaviorの終了時に信号を送る。" id="4" />
+                            <Timeline enable="0">
+                                <BehaviorLayer name="behavior_layer1">
+                                    <BehaviorKeyframe name="keyframe1" index="1">
+                                        <Diagram>
+                                            <Box name="Load LIBs" id="5" localization="8" tooltip="指定したディレクトリ以下のPythonライブラリをロードする。&#x0A;&#x0A;サブディレクトリを作成してパッケージ化した場合は、サブディレクトリ毎に空の __init__.py を配置すること。&#x0A;&#x0A;ver. 1.0" x="178" y="33">
+                                                <bitmap>media/images/box/box-python-script.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[import sys
+import os
+
+class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+        self.isLoaded = False
+        self.importPath = os.path.join(os.path.normpath(ALFrameManager.getBehaviorPath(self.behaviorId)), self.getParameter("Path"))
+
+        # パスが通っていなければ、追加する。
+        if self.importPath not in sys.path:
+            sys.path.append(self.importPath)
+
+        self.isLoaded = True
+
+    def onUnload(self):
+        while self.importPath in sys.path:
+            sys.path.remove(self.importPath)
+
+    def onInput_onStart(self):
+        if self.isLoaded:
+            import cloudrobotics.client
+            reload(cloudrobotics.client)
+            import cloudrobotics.message
+            reload(cloudrobotics.message)
+            import cloudrobotics.storage
+            reload(cloudrobotics.storage)
+            self.onLoaded()]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                                                <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="" id="2" />
+                                                <Output name="onLoaded" type="1" type_size="1" nature="2" inner="0" tooltip="ロードに成功した場合" id="3" />
+                                                <Parameter name="Path" inherits_from_parent="0" content_type="3" value="../lib" default_value="lib" custom_choice="0" tooltip="Pythonライブラリが配置されているパス。" id="4" />
+                                            </Box>
+                                            <Box name="Disable BasicAwareness" id="10" localization="8" tooltip="Basic Awarenessを無効化する。" x="146" y="174">
+                                                <bitmap>media/images/box/box-python-script.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+
+    def onLoad(self):
+        self.awareness = ALProxy('ALBasicAwareness')
+
+    def onUnload(self):
+        self.awareness.setEnabled(True)
+
+    def onInput_onStart(self):
+        self.awareness.setEnabled(False)
+        self.onStopped()
+
+    def onInput_onStop(self):
+        self.onUnload()
+        self.onStopped()]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                                                <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                                                <Output name="onStopped" type="1" type_size="1" nature="2" inner="0" tooltip="ボックスBehaviorの終了時に信号を送る。" id="4" />
+                                            </Box>
+                                            <Box name="n_直立" id="13" localization="8" tooltip="Enter tooltip here" x="266" y="181">
+                                                <bitmap>media/images/box/box-diagram.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                                                <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                                                <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="ボックス動作の終了時に信号を送る" id="4" />
+                                                <Timeline enable="1" fps="25" start_frame="1" end_frame="30" size="30">
+                                                    <ActuatorList model="juliette">
+                                                        <ActuatorCurve name="value" actuator="HeadPitch" mute="0" unit="0">
+                                                            <Key frame="30" value="-11.8652" />
+                                                        </ActuatorCurve>
+                                                        <ActuatorCurve name="value" actuator="HeadYaw" mute="0" unit="0">
+                                                            <Key frame="30" value="0" />
+                                                        </ActuatorCurve>
+                                                        <ActuatorCurve name="value" actuator="HipPitch" mute="0" unit="0">
+                                                            <Key frame="30" value="-1.66993" />
+                                                        </ActuatorCurve>
+                                                        <ActuatorCurve name="value" actuator="HipRoll" mute="0" unit="0">
+                                                            <Key frame="30" value="-0.703127" />
+                                                        </ActuatorCurve>
+                                                        <ActuatorCurve name="value" actuator="KneePitch" mute="0" unit="0">
+                                                            <Key frame="30" value="-0.527345" />
+                                                        </ActuatorCurve>
+                                                        <ActuatorCurve name="value" actuator="LElbowRoll" mute="0" unit="0">
+                                                            <Key frame="30" value="-29.707" />
+                                                        </ActuatorCurve>
+                                                        <ActuatorCurve name="value" actuator="LElbowYaw" mute="0" unit="0">
+                                                            <Key frame="30" value="-70.5762" />
+                                                        </ActuatorCurve>
+                                                        <ActuatorCurve name="value" actuator="LHand" mute="0" unit="1">
+                                                            <Key frame="30" value="0.59051" />
+                                                        </ActuatorCurve>
+                                                        <ActuatorCurve name="value" actuator="LShoulderPitch" mute="0" unit="0">
+                                                            <Key frame="30" value="90.2637" />
+                                                        </ActuatorCurve>
+                                                        <ActuatorCurve name="value" actuator="LShoulderRoll" mute="0" unit="0">
+                                                            <Key frame="30" value="8.4375" />
+                                                        </ActuatorCurve>
+                                                        <ActuatorCurve name="value" actuator="LWristYaw" mute="0" unit="0">
+                                                            <Key frame="30" value="0.788627" />
+                                                        </ActuatorCurve>
+                                                        <ActuatorCurve name="value" actuator="RElbowRoll" mute="0" unit="0">
+                                                            <Key frame="30" value="29.6191" />
+                                                        </ActuatorCurve>
+                                                        <ActuatorCurve name="value" actuator="RElbowYaw" mute="0" unit="0">
+                                                            <Key frame="30" value="70.4883" />
+                                                        </ActuatorCurve>
+                                                        <ActuatorCurve name="value" actuator="RHand" mute="0" unit="1">
+                                                            <Key frame="30" value="0.59051" />
+                                                        </ActuatorCurve>
+                                                        <ActuatorCurve name="value" actuator="RShoulderPitch" mute="0" unit="0">
+                                                            <Key frame="30" value="90" />
+                                                        </ActuatorCurve>
+                                                        <ActuatorCurve name="value" actuator="RShoulderRoll" mute="0" unit="0">
+                                                            <Key frame="30" value="-8.26171" />
+                                                        </ActuatorCurve>
+                                                        <ActuatorCurve name="value" actuator="RWristYaw" mute="0" unit="0">
+                                                            <Key frame="30" value="0.964409" />
+                                                        </ActuatorCurve>
+                                                    </ActuatorList>
+                                                </Timeline>
+                                            </Box>
+                                            <Link inputowner="13" indexofinput="2" outputowner="10" indexofoutput="4" />
+                                            <Link inputowner="5" indexofinput="2" outputowner="0" indexofoutput="2" />
+                                            <Link inputowner="10" indexofinput="2" outputowner="0" indexofoutput="2" />
+                                            <Link inputowner="0" indexofinput="4" outputowner="5" indexofoutput="3" />
+                                        </Diagram>
+                                    </BehaviorKeyframe>
+                                </BehaviorLayer>
+                            </Timeline>
+                        </Box>
+                        <Box name="FaceRecognize" id="1" localization="8" tooltip="Cloud Robotics APIの顔認識APIを使用した処理" x="332" y="82">
+                            <bitmap>media/images/box/box-python-script.png</bitmap>
+                            <script language="4">
+                                <content>
+                                    <![CDATA[import time
+import os.path
+
+class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self, False)
+        self.behaviorPath = os.path.normpath(ALFrameManager.getBehaviorPath(self.behaviorId))
+        # 写真画像のパス
+        self.filepath = os.path.join(os.path.normpath(self.behaviorPath), 'image.jpg')
+
+    def onLoad(self):
+        self.client = None
+
+        # TODO: 【Step.1】 1.API Clientの生成
+        self.azure_iot_hub_hostname = '<...>'
+        self.azure_iot_hub_device_id = '<...>'
+        self.azure_iot_hub_device_key = '<...>'
+
+        self.storage = {}
+
+    def onUnload(self):
+        if self.client is not None:
+            self.client.stop()
+
+    def onInput_onStart(self):
+        import cloudrobotics.client as crfx
+        import cloudrobotics.message as message
+
+        # TODO: 【Step.1】 1.API Clientの生成
+        self.client = '<...>'
+        self.client.on_connect_successful = self.on_connect_successful
+        self.client.on_connect_failed = self.on_connect_failed
+        self.client.on_disconnect = self.on_disconnect
+        self.client.on_message = self.on_message
+        self.client.on_publish = self.on_publish
+
+        # 処理の開始
+        self.client.start()
+
+        # TODO: 【Step.1】 2.ストレージ情報の取得
+        init_message = message.CRFXMessage()
+        init_message.header['RoutingType'] = '<...>'
+        init_message.header['MessageId'] = '<...>'
+        init_message.header['AppProcessingId'] = '<...>'
+
+        # メッセージの送信(APIコール)
+        self.client.send_message(init_message)
+
+    def onInput_onCallRegister(self):
+        # TODO: 【Step.2】 1.ストレージへの写真アップロード
+        import cloudrobotics.message as message
+        from cloudrobotics.storage import upload_to_storage
+
+        if not os.path.isfile(self.filepath):
+            self.logger.warn('There is no picture file. :' + self.filepath)
+            return
+
+        try:
+            '<...>'
+        except Exception as e:
+            self.logger.error('Failed to upload this file to the Azure Blob storage, because ' + str(e))
+            return
+
+        # TODO: 【Step.2】 2.顔登録
+        register_message = message.CRFXMessage()
+        register_message.header['RoutingType'] = '<...>'
+        register_message.header['AppProcessingId'] = '<...>'
+        register_message.header['MessageId'] = '<...>'
+
+        register_message.body['visitor'] = '<...>'
+        register_message.body['groupId'] = '<...>'
+        register_message.body['locationId'] = '<...>'
+        register_message.body['visitor_name'] = '<...>'
+        register_message.body['visitor_name_kana'] = '<...>'
+        register_message.body['blobFileName'] = 'image.jpg' # Blobのファイル名はアップロードしたファイル名となります。パスは不要です。
+        register_message.body['deleteFile'] = '<...>'
+
+        self.client.send_message(register_message)
+
+    def onInput_onCallRecognize(self):
+        # TODO: 【Step.3】 1.顔認識
+        import cloudrobotics.message as message
+        from cloudrobotics.storage import upload_to_storage
+
+        if not os.path.isfile(self.filepath):
+            self.logger.warn('There is no picture file. :' + self.filepath)
+            return
+
+        try:
+            '<...>'
+        except Exception as e:
+            self.logger.error(str(e))
+            return
+
+        recognize_message = message.CRFXMessage()
+        recognize_message.header['RoutingType'] = '<...>'
+        recognize_message.header['AppProcessingId'] = '<...>'
+        recognize_message.header['MessageId'] = '<...>'
+
+        recognize_message.body['visitor'] = '<...>'
+        recognize_message.body['groupId'] = '<...>'
+        recognize_message.body['locationId'] = '<...>'
+        recognize_message.body['blobFileName'] = 'image.jpg' # Blobのファイル名はアップロードしたファイル名となります。パスは不要です。
+        recognize_message.body['deleteFile'] = '<...>'
+
+        self.client.send_message(recognize_message)
+
+    def onInput_onStop(self):
+        self.onUnload()
+        self.onStopped()
+
+    #
+    # コールバック
+    #
+
+    # 接続が成功した時
+    #
+    def on_connect_successful(self):
+        self.logger.info('started.')
+        self.onStarted('<...>')
+
+    # 接続が失敗した時
+    #
+    def on_connect_failed(self):
+        self.logger.info('failed.')
+        self.onConnectError()
+
+    # 切断された時
+    #
+    def on_disconnect(self):
+        self.logger.info('stopped.')
+        self.onStopped()
+
+    # メッセージを受信した時
+    #
+    def on_message(self, received_message):
+        self.logger.info('received.')
+        self.logger.info(str(received_message.header) + ', ' + str(received_message.body))
+
+        # メッセージヘッダーのMessageIdに応じて処理を実装
+        if received_message.header['MessageId'] == '<...>':
+            # TODO: 【Step.1】 2.ストレージ情報の取得
+            self.storage['account'] = received_message.body['<...>']
+            self.storage['key'] = received_message.body['<...>']
+            self.storage['container'] = received_message.body['<...>']
+
+            self.logger.info('<...>')
+            self.logger.info('<...>')
+            self.logger.info('<...>')
+
+        elif received_message.header['MessageId'] == '<...>':
+            # TODO: 【Step.2】 2.顔登録
+            if '<...>':
+                self.onRegistered('登録に成功しました。')
+            else:
+                self.onFailRegistration('登録に失敗しました')
+
+        elif received_message.header['MessageId'] == '<...>':
+            # TODO: 【Step.3】 1.挨拶
+            if '<...>':
+                self.onRecognized('<...>')
+
+                # TODO: 【Step.3】 2.その他の接客
+                pass
+            else:
+                self.onFailRecognition('認識に失敗しました。')
+
+    # メッセージを送信した時
+    #
+    def on_publish(self):
+        self.logger.info('published.')]]>
+</content>
+                            </script>
+                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                            <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                            <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                            <Input name="onCallRegister" type="1" type_size="1" nature="1" inner="0" tooltip="" id="4" />
+                            <Input name="onCallRecognize" type="1" type_size="1" nature="1" inner="0" tooltip="" id="5" />
+                            <Output name="onStarted" type="3" type_size="1" nature="2" inner="0" tooltip="" id="6" />
+                            <Output name="onConnectError" type="1" type_size="1" nature="2" inner="0" tooltip="" id="7" />
+                            <Output name="onRegistered" type="3" type_size="1" nature="2" inner="0" tooltip="" id="8" />
+                            <Output name="onFailRegistration" type="3" type_size="1" nature="2" inner="0" tooltip="" id="9" />
+                            <Output name="onRecognized" type="3" type_size="1" nature="2" inner="0" tooltip="" id="10" />
+                            <Output name="onFailRecognition" type="3" type_size="1" nature="2" inner="0" tooltip="" id="11" />
+                            <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="ボックスBehaviorの終了時に信号を送る。" id="12" />
+                        </Box>
+                        <Box name="Say Text" id="3" localization="8" tooltip="Say the text received on its input." x="511" y="131">
+                            <bitmap>media/images/box/interaction/say.png</bitmap>
+                            <script language="4">
+                                <content>
+                                    <![CDATA[import time
+
+class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self, False)
+        self.tts = ALProxy('ALTextToSpeech')
+        self.ttsStop = ALProxy('ALTextToSpeech', True) #Create another proxy as wait is blocking if audioout is remote
+
+    def onLoad(self):
+        self.bIsRunning = False
+        self.ids = []
+
+    def onUnload(self):
+        for id in self.ids:
+            try:
+                self.ttsStop.stop(id)
+            except:
+                pass
+        while( self.bIsRunning ):
+            time.sleep( 0.2 )
+
+    def onInput_onStart(self, p):
+        self.bIsRunning = True
+        try:
+            sentence = "\RSPD="+ str( self.getParameter("Speed (%)") ) + "\ "
+            sentence += "\VCT="+ str( self.getParameter("Voice shaping (%)") ) + "\ "
+            sentence += str(p)
+            sentence +=  "\RST\ "
+            id = self.tts.post.say(str(sentence))
+            self.ids.append(id)
+            self.tts.wait(id, 0)
+        finally:
+            try:
+                self.ids.remove(id)
+            except:
+                pass
+            if( self.ids == [] ):
+                self.onStopped() # activate output of the box
+                self.bIsRunning = False
+
+    def onInput_onStop(self):
+        self.onUnload()]]>
+</content>
+                            </script>
+                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when Diagram is loaded." id="1" />
+                            <Input name="onStart" type="3" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this Input." id="2" />
+                            <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this Input." id="3" />
+                            <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when Box behavior is finished." id="4" />
+                            <Parameter name="Voice shaping (%)" inherits_from_parent="1" content_type="1" value="100" default_value="100" min="50" max="150" tooltip='Used to modify at runtime the voice feature (tone, speed). In a slighty&#x0A;different way than pitch and speed, it gives a kind of &quot;gender or age&#x0A;modification&quot; effect.&#x0A;&#x0A;For instance, a quite good male derivation of female voice can be&#x0A;obtained setting this parameter to 78%.&#x0A;&#x0A;Note: For a better effect, you can compensate this parameter with the&#x0A;speed parameter. For example, if you want to decrease by 20% the voice&#x0A;shaping, you will have to increase by 20% the speed to keep a constant&#x0A;average speed.' id="5" />
+                            <Parameter name="Speed (%)" inherits_from_parent="1" content_type="1" value="100" default_value="100" min="50" max="200" tooltip="Changes the speed of the voice.&#x0A;&#x0A;Note: For a better effect, you can compensate this parameter with the voice&#x0A;shaping parameter. For example, if you want to increase by 20% the speed, you&#x0A;will have to decrease by 20% the voice shaping to keep a constant average&#x0A;speed." id="6" />
+                            <Resource name="Speech" type="Lock" timeout="0" />
+                        </Box>
+                        <Link inputowner="2" indexofinput="2" outputowner="0" indexofoutput="2" />
+                        <Link inputowner="1" indexofinput="2" outputowner="2" indexofoutput="4" />
+                        <Link inputowner="3" indexofinput="2" outputowner="1" indexofoutput="8" />
+                        <Link inputowner="3" indexofinput="2" outputowner="1" indexofoutput="9" />
+                        <Link inputowner="3" indexofinput="2" outputowner="1" indexofoutput="10" />
+                        <Link inputowner="3" indexofinput="2" outputowner="1" indexofoutput="11" />
+                        <Link inputowner="0" indexofinput="4" outputowner="1" indexofoutput="7" />
+                        <Link inputowner="3" indexofinput="2" outputowner="1" indexofoutput="6" />
+                    </Diagram>
+                </BehaviorKeyframe>
+            </BehaviorLayer>
+        </Timeline>
+    </Box>
+</ChoregrapheProject>

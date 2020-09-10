@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PublicConfig xmlns="http://schemas.microsoft.com/ServiceHosting/2010/10/DiagnosticsConfiguration">
+  <WadCfg>
+    <DiagnosticMonitorConfiguration overallQuotaInMB="4096" sinks="applicationInsights.errors">
+      <DiagnosticInfrastructureLogs scheduledTransferLogLevelFilter="Verbose" />
+      <Directories scheduledTransferPeriod="PT1M">
+        <FailedRequestLogs containerName="wad-failedrequestlogs" />
+      </Directories>
+      <PerformanceCounters scheduledTransferPeriod="PT1M">
+        <PerformanceCounterConfiguration counterSpecifier="\Processor(_Total)\% Processor Time" sampleRate="PT3M" />
+        <PerformanceCounterConfiguration counterSpecifier="\Memory\Available MBytes" sampleRate="PT3M" />
+        <PerformanceCounterConfiguration counterSpecifier="\Process(WaWorkerHost)\% Processor Time" sampleRate="PT0S" />
+        <PerformanceCounterConfiguration counterSpecifier="\Process(WaWorkerHost)\Thread Count" sampleRate="PT0S" />
+      </PerformanceCounters>
+      <WindowsEventLog scheduledTransferPeriod="PT1M">
+        <DataSource name="Application!*" />
+      </WindowsEventLog>
+      <CrashDumps dumpType="Full">
+        <CrashDumpConfiguration processName="WaIISHost.exe" />
+        <CrashDumpConfiguration processName="WaWorkerHost.exe" />
+        <CrashDumpConfiguration processName="WaAppAgent.exe" />
+        <CrashDumpConfiguration processName="WindowsAzureGuestAgent.exe" />
+        <CrashDumpConfiguration processName="DiagnosticsAgent.exe" />
+      </CrashDumps>
+      <Logs scheduledTransferPeriod="PT1M" scheduledTransferLogLevelFilter="Verbose" />
+    </DiagnosticMonitorConfiguration>
+    <SinksConfig>
+      <Sink name="applicationInsights">
+        <ApplicationInsights>e365183f-6bb1-4d4e-bcfa-e5892feaeaae</ApplicationInsights>
+        <Channels>
+          <Channel logLevel="Error" name="errors" />
+        </Channels>
+      </Sink>
+    </SinksConfig>
+  </WadCfg>
+  <StorageAccount>cloudroboticsfx</StorageAccount>
+</PublicConfig>

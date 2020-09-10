@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="CloudRoboticsFX" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2015-04.2.6">
+  <Role name="CloudRoboticsFX.Worker">
+    <Instances count="2" />
+    <ConfigurationSettings>
+      <Setting name="IoTHub.ConnectionString" value="HostName=xxxxxxxxxx.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=xxxxxxxxxxxxxxxxxxxxxx" />
+      <Setting name="IoTHub.ClassicConnectionString" value="sb://xxxxxxxxxxxxxxxx.servicebus.windows.net/" />
+      <Setting name="IoTHub.HubName" value="xxxxxxxxxxxx" />
+      <Setting name="IoTHub.StorageAccountName" value="xxxxxxxxxxxxxxxxxxxxxx" />
+      <Setting name="IoTHub.StorageAccountKey" value="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" />
+      <Setting name="IoTHub.ConsumerGroupName" value="CloudRoboticsFXCG" />
+      <Setting name="StorageQueue.SendEnabled" value="false" />
+      <Setting name="RbCache.ExpiredTimeSec" value="60" />
+      <Setting name="RbEnc.PassPhrase" value="This is a passphrase!!" />
+      <Setting name="SqlConnectionString" value="Server=tcp:xxxxxxxxxx.database.windows.net,1433;Database=xxxxxxxx;User ID=xxxxxxxxxx;Password=xxxxxxxxxxx;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" />
+      <Setting name="RbC2dLog.Enable" value="true" />
+      <Setting name="RbC2dLog.EventHubConnString" value="Endpoint=sb://xxxxxxxxxxxxxxx.servicebus.windows.net/;SharedAccessKeyName=xxxxxxxxxxxx;SharedAccessKey=xxxxxxxxxxxxxxxxxxxxxxxxx" />
+      <Setting name="RbC2dLog.EventHubName" value="xxxxxxxxxxxxxx" />
+      <Setting name="RbTrace.StorageAccountName" value="xxxxxxxxxxxxxxxxxxxxxx" />
+      <Setting name="RbTrace.StorageAccountKey" value="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" />
+      <Setting name="RbTrace.StorageTableName" value="RbTraceLog" />
+      <Setting name="RbTrace.TraceLevel" value="Detail" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.Enabled" value="false" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" value="xxxxxxxx" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" value="MIIBnQYJKoZIhvcNAQcDoIIBjjCCAYoCAQAxggFOMIIBSgIBADAyMB4xHDAaBgNVBAMME1dpbmRvd3MgQXp1cmUgVG9vbHMCEGDA5bbRI5WqTmbB7SjSYVYwDQYJKoZIhvcNAQEBBQAEggEAWxo1rpAj31fUHL0YOBZ04a9LP6+Ndw4eM7oQlfcAHhXL+WfKp+mymia+uRORP8myqVDARx0hp94OwsbKs/7ZRD7TubH0yJha2NHwtXkKk/zytamf7MtEaEhCUO0/+zmTurn6EEmio1eFLh5mKzS2fpyaypHlOz5Lp8bVhWaabrk3EC2zzpE+jotQA9Hc0NxP6Q0CKFnTXqPiohHTFUljYFfK8Z0Y5m4D5cUDnFgLk9ILBMPPHOI/os067UTncyMpA5/mqtafx4IeHQ67QVIFf5tqxT4hKt8+t+VrRHcqn/HIV/rqNyxkifOsND2n1G/yM63eUyoBYwnuxGDvjVgZyzAzBgkqhkiG9w0BBwEwFAYIKoZIhvcNAwcECHXfMzFx+Jl7gBDb9tyxM+AZbeuLPiUCOyoJ" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountExpiration" value="2017-12-31T23:59:59.0000000+09:00" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteForwarder.Enabled" value="true" />
+    </ConfigurationSettings>
+    <Certificates>
+      <Certificate name="Microsoft.WindowsAzure.Plugins.RemoteAccess.PasswordEncryption" thumbprint="CF2BB0D2F89EA349691065B6DD459C95682B0ADF" thumbprintAlgorithm="sha1" />
+    </Certificates>
+  </Role>
+</ServiceConfiguration>

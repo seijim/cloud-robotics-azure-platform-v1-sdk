@@ -1,0 +1,101 @@
+{
+  "RbHeader": {
+    "RoutingType": "CALL",
+    "RoutingKeyword": "Default",
+    "AppId": "SbrApiServices",
+    "AppProcessingId": "RbAppConversationApi",
+    "MessageId": "init",
+    "MessageSeqno": "1",
+    "SendDateTime": "2017-01-31 09:24:49.538"
+  },
+  "RbBody": {
+    "visitor": "u001",
+    "visitor_id": "x01-u01",
+    "talkByMe": "çqãÛåîÇó\ñÒÇµÇΩÇ¢ÇÃÇ≈Ç∑Ç™"
+  }
+}
+
+{
+  "RbHeader": {
+    "RoutingType": "CALL",
+    "RoutingKeyword": "Default",
+    "AppId": "SbrApiServices",
+    "AppProcessingId": "RbAppConversationApi",
+    "MessageId": "talkBookFlight",
+    "MessageSeqno": "1",
+    "SendDateTime": "2017-01-31 09:24:49.538"
+  },
+  "RbBody": {
+    "visitor": "u001",
+    "visitor_id": "x01-u01",
+    "talkByMe": "ÇRåéÇPÇSì˙"
+  }
+}
+
+{
+  "RbHeader": {
+    "RoutingType": "CALL",
+    "RoutingKeyword": "Default",
+    "AppId": "SbrApiServices",
+    "AppProcessingId": "RbAppConversationApi",
+    "MessageId": "talkBookFlight",
+    "MessageSeqno": "1",
+    "SendDateTime": "2017-01-31 09:24:49.538"
+  },
+  "RbBody": {
+    "visitor": "u001",
+    "visitor_id": "x01-u01",
+    "talkByMe": "ÇPÇSéû"
+  }
+}
+
+{
+  "RbHeader": {
+    "RoutingType": "CALL",
+    "RoutingKeyword": "Default",
+    "AppId": "SbrApiServices",
+    "AppProcessingId": "RbAppConversationApi",
+    "MessageId": "talkBookFlight",
+    "MessageSeqno": "1",
+    "SendDateTime": "2017-01-31 09:24:49.538"
+  },
+  "RbBody": {
+    "visitor": "u001",
+    "visitor_id": "x01-u01",
+    "talkByMe": "ìåãû"
+  }
+}
+
+{
+  "RbHeader": {
+    "RoutingType": "CALL",
+    "RoutingKeyword": "Default",
+    "AppId": "SbrApiServices",
+    "AppProcessingId": "RbAppConversationApi",
+    "MessageId": "talkBookFlight",
+    "MessageSeqno": "1",
+    "SendDateTime": "2017-01-31 09:24:49.538"
+  },
+  "RbBody": {
+    "visitor": "u001",
+    "visitor_id": "x01-u01",
+    "talkByMe": "â´ìÍ"
+  }
+}
+
+{
+  "RbHeader": {
+    "RoutingType": "CALL",
+    "RoutingKeyword": "Default",
+    "AppId": "SbrApiServices",
+    "AppProcessingId": "RbAppConversationApi",
+    "MessageId": "talkBookFlight",
+    "MessageSeqno": "1",
+    "SendDateTime": "2017-01-31 09:24:49.538"
+  },
+  "RbBody": {
+    "visitor": "u001",
+    "visitor_id": "x01-u01",
+    "talkByMe": "ëSì˙ãÛ"
+  }
+}

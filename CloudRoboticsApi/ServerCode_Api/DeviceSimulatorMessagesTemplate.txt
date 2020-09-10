@@ -1,0 +1,322 @@
+{ "Messages": [ 
+  {
+    "Tytle": "Control Message",
+    "MessageType": "CONTROL",
+    "RbMessage":{
+      "RbHeader": {
+        "RoutingType": "CONTROL",
+        "AppId": "PepperShopApp",
+        "AppProcessingId": "ReqAppInfo",
+        "MessageSeqno": "", 
+        "SendDateTime": ""
+      },
+      "RbBody": {
+        "visitor": "u001"
+      }
+    }
+  },
+  {
+    "Tytle": "Pepper Init",
+    "MessageType": "PEPPER",
+    "RbMessage":{
+      "RbHeader":{
+        "RoutingType":"D2D",
+        "RoutingKeyword":"Default",
+        "AppId":"PepperShopApp",
+        "AppProcessingId":"",
+        "MessageId":"init",
+        "MessageSeqno":"",
+        "SendDateTime":""
+      },
+      "RbBody":{
+        "visitor":"u001"
+      }
+    }
+  },
+  {
+    "Tytle": "Pepper Detect",
+    "MessageType": "PEPPER",
+    "RbMessage":{
+      "RbHeader":{
+        "RoutingType":"D2D",
+        "RoutingKeyword":"Default",
+        "AppId":"PepperShopApp",
+        "AppProcessingId":"",
+        "MessageId":"detect",
+        "MessageSeqno":"",
+        "SendDateTime":""
+      },
+      "RbBody":{
+        "visitor":"u001",
+        "gender":"f",
+        "age":"29"
+      }
+    }
+  },
+  {
+    "Tytle": "Surface Response(Detect)",
+    "MessageType": "SURFACE",
+    "RbMessage":{
+      "RbHeader":{
+        "RoutingType":"D2D",
+        "RoutingKeyword":"Default",
+        "AppId":"PepperShopApp",
+        "AppProcessingId":"",
+        "MessageId":"display",
+        "MessageSeqno":"",
+        "SendDateTime":""
+      },
+      "RbBody":{
+        "visitor":"u001",
+        "gender":"f",
+        "age":"29",
+        "product":"S01_0840076146642",
+        "quantity":"",
+        "stock":""
+      }
+    }
+  },
+  {
+    "Tytle": "Surface Order",
+    "MessageType": "SURFACE",
+    "RbMessage":{
+      "RbHeader":{
+        "RoutingType":"D2D",
+        "RoutingKeyword":"Default",
+        "AppId":"PepperShopApp",
+        "AppProcessingId":"",
+        "MessageId":"order",
+        "MessageSeqno":"",
+        "SendDateTime":""
+      },
+      "RbBody":{
+        "visitor":"u001",
+        "gender":"f",
+        "age":"29",
+        "product":"S01_0840076146642",
+        "quantity":"1",
+        "stock":"1"
+      }
+    }
+  },
+  {
+    "Tytle": "Call RbSampleApp",
+    "MessageType": "CALL",
+    "RbMessage":{
+      "RbHeader": {
+        "RoutingType": "CALL",
+        "RoutingKeyword": "Default",
+        "AppId": "PepperShopApp",
+        "AppProcessingId": "RbSampleApp",
+        "MessageId": "SayHello", 
+        "MessageSeqno": "", 
+        "SendDateTime": ""
+      },
+      "RbBody": {
+        "visitor": "u002"
+      }
+    }
+  },
+  {
+    "Tytle": "Call RbAppFaceApi(init)",
+    "MessageType": "CALL",
+    "RbMessage":{
+      "RbHeader": {
+        "RoutingType": "CALL",
+        "RoutingKeyword": "Default",
+        "AppId": "SbrApiServices",
+        "AppProcessingId": "RbAppFaceApi",
+        "MessageId": "init", 
+        "MessageSeqno": "", 
+        "SendDateTime": ""
+      },
+      "RbBody": {
+      }
+    }
+  },
+  {
+    "Tytle": "Call RbAppFaceApi(Get)",
+    "MessageType": "CALL",
+    "RbMessage":{
+      "RbHeader": {
+        "RoutingType": "CALL",
+        "RoutingKeyword": "Default",
+        "AppId": "SbrApiServices",
+        "AppProcessingId": "RbAppFaceApi",
+        "MessageId": "getFaceInfo", 
+        "MessageSeqno": "", 
+        "SendDateTime": ""
+      },
+      "RbBody": {
+        "visitor": "u001",
+        "groupId": "sbrtestgroup001",
+        "locationId": "all",
+        "blobFileName": "horikita.jpg",
+        "deleteFile": "false"
+      }
+    }
+  },
+  {
+    "Tytle": "Call RbAppFaceApi(Reg)",
+    "MessageType": "CALL",
+    "RbMessage":{
+      "RbHeader": {
+        "RoutingType": "CALL",
+        "RoutingKeyword": "Default",
+        "AppId": "SbrApiServices",
+        "AppProcessingId": "RbAppFaceApi",
+        "MessageId": "registerFace", 
+        "MessageSeqno": "", 
+        "SendDateTime": ""
+      },
+      "RbBody": {
+        "visitor": "u002",
+        "groupId": "sbrtestgroup001",
+        "locationId": "all",
+        "visitor_name": "putin",
+        "visitor_name_kana": "ÉvÅ[É`Éì",
+        "blobFileName": "putin.jpg",
+        "deleteFile": "false"
+      }
+    }
+  },
+  {
+    "Tytle": "Call RbAppVisionApi(init)",
+    "MessageType": "CALL",
+    "RbMessage":{
+      "RbHeader": {
+        "RoutingType": "CALL",
+        "RoutingKeyword": "Default",
+        "AppId": "SbrApiServices",
+        "AppProcessingId": "RbAppVisionApi",
+        "MessageId": "init", 
+        "MessageSeqno": "", 
+        "SendDateTime": ""
+      },
+      "RbBody": {
+      }
+    }
+  },
+  {
+    "Tytle": "Call RbAppVisionApi(analyze)",
+    "MessageType": "CALL",
+    "RbMessage":{
+      "RbHeader": {
+        "RoutingType": "CALL",
+        "RoutingKeyword": "Default",
+        "AppId": "SbrApiServices",
+        "AppProcessingId": "RbAppVisionApi",
+        "MessageId": "analyze", 
+        "MessageSeqno": "", 
+        "SendDateTime": ""
+      },
+      "RbBody": {
+        "visitor": "u001",
+        "visitor_id": "x01-u01",      
+        "blobFileName": "visionPic1.jpg",
+        "deleteFile": "false"
+      }
+    }
+  },
+  {
+    "Tytle": "Call RbAppTranslatorApi",
+    "MessageType": "CALL",
+    "RbMessage":{
+      "RbHeader": {
+        "RoutingType": "CALL",
+        "RoutingKeyword": "Default",
+        "AppId": "SbrApiServices",
+        "AppProcessingId": "RbAppTranslatorApi",
+        "MessageId": "", 
+        "MessageSeqno": "", 
+        "SendDateTime": ""
+      },
+      "RbBody": {
+        "visitor": "u01",
+        "visitor_id": "x01-u01",      
+        "text": "ñæì˙ÇÃÇPÇTéûèoî≠ÇÃâ´ìÍçsÇ´ÇÃîÚçsã@Çó\ñÒÇµÇΩÇ¢Ç∆évÇ¡ÇƒÇ¢Ç‹Ç∑ÅB",
+        "tolang": "en"
+      }
+    }
+  },
+  {
+    "Tytle": "Call LUIS App (Dance App)",
+    "MessageType": "CALL",
+    "RbMessage":{
+      "RbHeader": {
+        "RoutingType": "CALL",
+        "RoutingKeyword": "Default",
+        "AppId": "SbrApiServices",
+        "AppProcessingId": "RbAppConversationApi",
+        "MessageId": "init", 
+        "MessageSeqno": "", 
+        "SendDateTime": ""
+      },
+      "RbBody": {
+        "visitor": "u002",
+        "visitor_id": "x01-002",
+        "talkByMe": "É_ÉìÉXÇ™ÇµÇΩÇ¢"
+      }
+    }
+  },
+  {
+    "Tytle": "Call LUIS App (Book Hotel) #1",
+    "MessageType": "CALL",
+    "RbMessage":{
+      "RbHeader": {
+        "RoutingType": "CALL",
+        "RoutingKeyword": "Default",
+        "AppId": "SbrApiServices",
+        "AppProcessingId": "RbAppConversationApi",
+        "MessageId": "init", 
+        "MessageSeqno": "", 
+        "SendDateTime": ""
+      },
+      "RbBody": {
+        "visitor": "u002",
+        "visitor_id": "x01-002",
+        "talkByMe": "ÉzÉeÉãÇó\ñÒÇµÇΩÇ¢ÇÃÇ≈Ç∑Ç™"
+      }
+    }
+  },
+  {
+    "Tytle": "Call LUIS App (Book Hotel) #2",
+    "MessageType": "CALL",
+    "RbMessage":{
+      "RbHeader": {
+        "RoutingType": "CALL",
+        "RoutingKeyword": "Default",
+        "AppId": "SbrApiServices",
+        "AppProcessingId": "RbAppConversationApi",
+        "MessageId": "talkBookHotel", 
+        "MessageSeqno": "", 
+        "SendDateTime": ""
+      },
+      "RbBody": {
+        "visitor": "u002",
+        "visitor_id": "x01-002",
+        "talkByMe": "ÇRåéÇPÇSì˙"
+      }
+    }
+  },
+  {
+    "Tytle": "Call LUIS App (Book Hotel) #3",
+    "MessageType": "CALL",
+    "RbMessage":{
+      "RbHeader": {
+        "RoutingType": "CALL",
+        "RoutingKeyword": "Default",
+        "AppId": "SbrApiServices",
+        "AppProcessingId": "RbAppConversationApi",
+        "MessageId": "talkBookHotel", 
+        "MessageSeqno": "", 
+        "SendDateTime": ""
+      },
+      "RbBody": {
+        "visitor": "u002",
+        "visitor_id": "x01-002",
+        "talkByMe": "ìåãû"
+      }
+    }
+  }
+]}

@@ -1,0 +1,30 @@
+SELECT
+    EventEnqueuedUtcTime AS EventEnqueuedUtcTime,
+    EventProcessedUtcTime AS EventProcessedUtcTime,
+    PartitionId AS PartitionId,
+    IoTHub.ConnectionDeviceId AS IoTHub_ConnectionDeviceId,
+	RbHeader.RoutingType AS RBFX_RoutingType,
+	RbHeader.RoutingKeyword AS RBFX_RoutingKeyword,
+	RbHeader.AppId AS RBFX_AppId,
+	RbHeader.AppProcessingId AS RBFX_AppProcessingId,
+	RbHeader.MessageId AS RBFX_MessageId,
+	RbHeader.MessageSeqno AS RBFX_MessageSeqno,
+	RbHeader.SendDateTime AS RBFX_SendDateTime,
+	RbHeader.SourceDeviceId AS RBFX_SourceDeviceId,
+	RbHeader.SourceDeviceType AS RBFX_SourceDeviceType,
+	RbHeader.SourceDevRescGroupId AS RBFX_SourceDevRescGroupId,
+	RbHeader.TargetType AS RBFX_TargetType,
+	RbHeader.TargetDeviceGroupId AS RBFX_TargetDeviceGroupId,
+	RbHeader.TargetDeviceId AS RBFX_TargetDeviceId,
+	RbHeader.ProcessingStack AS RBFX_ProcessingStack,
+	RbBody.visitor AS visitor,
+	RbBody.visitor_id AS visitor_id,
+	RbBody.text AS text,
+	RbBody.tolang AS tolang
+INTO
+	[out-sqldb2]
+FROM
+	[in-iothub]
+WHERE
+	RbHeader.AppId = N'SbrApiServices' AND
+	RbHeader.AppProcessingId = N'RbAppTranslatorApi'

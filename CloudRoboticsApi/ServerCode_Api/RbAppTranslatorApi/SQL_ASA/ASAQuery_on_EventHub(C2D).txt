@@ -1,0 +1,37 @@
+WITH tempTable AS (
+    SELECT
+        EventEnqueuedUtcTime AS EventEnqueuedUtcTime,
+        EventProcessedUtcTime AS EventProcessedUtcTime,
+        PartitionId AS PartitionId,
+        GetArrayElement(Messages,0)as messages
+    FROM 
+        [in-eventhub]
+)
+
+SELECT 
+    EventEnqueuedUtcTime,
+    EventProcessedUtcTime,
+    PartitionId,
+    messages.RbHeader.SourceDeviceId AS IoTHub_ConnectionDeviceId,
+	messages.RbHeader.RoutingType AS RBFX_RoutingType,
+	messages.RbHeader.RoutingKeyword AS RBFX_RoutingKeyword,
+	messages.RbHeader.AppId AS RBFX_AppId,
+	messages.RbHeader.AppProcessingId AS RBFX_AppProcessingId,
+	messages.RbHeader.MessageId AS RBFX_MessageId,
+	messages.RbHeader.MessageSeqno AS RBFX_MessageSeqno,
+	messages.RbHeader.SendDateTime AS RBFX_SendDateTime,
+	messages.RbHeader.SourceDeviceId AS RBFX_SourceDeviceId,
+	messages.RbHeader.SourceDeviceType AS RBFX_SourceDeviceType,
+	messages.RbHeader.SourceDevRescGroupId AS RBFX_SourceDevRescGroupId,
+	messages.RbHeader.TargetType AS RBFX_TargetType,
+	messages.RbHeader.TargetDeviceGroupId AS RBFX_TargetDeviceGroupId,
+	messages.RbHeader.TargetDeviceId AS RBFX_TargetDeviceId,
+	messages.RbHeader.ProcessingStack AS RBFX_ProcessingStack,
+	messages.RbBody.translated_text AS translated_text
+INTO
+    [out-sqldb]
+FROM 
+    [tempTable]
+WHERE
+    messages.RbHeader.AppId = N'SbrApiServices' AND
+    messages.RbHeader.AppProcessingId = N'RbAppTranslatorApi'

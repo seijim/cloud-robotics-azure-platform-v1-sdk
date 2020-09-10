@@ -1,0 +1,82 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CloudRoboWpfLoadTest.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="IoTHubConnectionString" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DeviceList" Type="System.String" Scope="User">
+      <Value Profile="(Default)">dev01,dev02,dev03,dev04</Value>
+    </Setting>
+    <Setting Name="NumOfLoops" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1000000</Value>
+    </Setting>
+    <Setting Name="TexBoxJson" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{
+  "RbHeader": {
+    "RoutingType": "CALL",
+    "RoutingKeyword": "Default",
+    "AppId": "PepperShopApp",
+    "AppProcessingId": "RbSampleApp",
+    "MessageId": "SayHello",
+    "MessageSeqno": "$$Param1$$",
+    "SendDateTime": "$$DateTime$$"
+  },
+  "RbBody": {
+    "visitor": "u$$Param2$$"
+  }
+}</Value>
+    </Setting>
+    <Setting Name="TextBoxDateTime" Type="System.String" Scope="User">
+      <Value Profile="(Default)">DateTime.Now</Value>
+    </Setting>
+    <Setting Name="ComboBoxP1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Addition</Value>
+    </Setting>
+    <Setting Name="LabelP1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Increment:</Value>
+    </Setting>
+    <Setting Name="TextBoxIncreP1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="TextBoxStartP1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="TextBoxEndP1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1000000</Value>
+    </Setting>
+    <Setting Name="ComboBoxP2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Random</Value>
+    </Setting>
+    <Setting Name="LabelP2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Value:</Value>
+    </Setting>
+    <Setting Name="TextBoxIncreP2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="TextBoxStartP2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="TextBoxEndP2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1000000</Value>
+    </Setting>
+    <Setting Name="ComboBoxP3" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="LabelP3" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Increment:</Value>
+    </Setting>
+    <Setting Name="TextBoxIncreP3" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="TextBoxStartP3" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="TextBoxEndP3" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1000000</Value>
+    </Setting>
+    <Setting Name="QueueStorageConnectionString" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>

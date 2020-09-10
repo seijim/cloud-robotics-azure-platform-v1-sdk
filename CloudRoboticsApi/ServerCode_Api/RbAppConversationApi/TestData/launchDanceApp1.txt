@@ -1,0 +1,16 @@
+{
+  "RbHeader": {
+    "RoutingType": "CALL",
+    "RoutingKeyword": "Default",
+    "AppId": "SbrApiServices",
+    "AppProcessingId": "RbAppConversationApi",
+    "MessageId": "init",
+    "MessageSeqno": "1",
+    "SendDateTime": "2017-01-31 09:24:49.538"
+  },
+  "RbBody": {
+    "visitor": "u001",
+    "visitor_id": "x01-u01",
+    "talkByMe": "—x‚ê"
+  }
+}

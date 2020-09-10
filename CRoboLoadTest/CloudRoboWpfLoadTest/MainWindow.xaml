@@ -1,0 +1,69 @@
+﻿<Window x:Class="CloudRoboWpfLoadTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CloudRoboWpfLoadTest"
+        mc:Ignorable="d"
+        Title="Cloud Robotics Load Test" Height="630.821" Width="878.851" Loaded="MainWindow_Loaded">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="Black" Offset="0"/>
+            <GradientStop Color="#FFFDFCFD" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid Margin="10,10,19,4.5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="textBoxJson" Height="240" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Width="827"/>
+        <Label x:Name="labelDateTime" Content="$$DateTime$$" HorizontalAlignment="Left" Height="28" Margin="10,272,0,0" VerticalAlignment="Top" Width="111"/>
+        <TextBox x:Name="textBoxDateTime" HorizontalAlignment="Left" Height="28" Margin="126,272,0,0" Text="DateTime.Now" VerticalAlignment="Top" Width="143" MaxLines="1"/>
+        <Label x:Name="labelParam1" Content="$$Param1$$" HorizontalAlignment="Left" Height="28" Margin="10,305,0,0" VerticalAlignment="Top" Width="111"/>
+        <ComboBox x:Name="comboBoxP1" HorizontalAlignment="Left" Margin="126,305,0,0" VerticalAlignment="Top" Width="143" Height="28" SelectionChanged="comboBoxP1_SelectionChanged">
+            <ComboBoxItem>Addition</ComboBoxItem>
+            <ComboBoxItem>Random</ComboBoxItem>
+        </ComboBox>
+        <Label x:Name="labelP1" Content="Increment:" HorizontalAlignment="Left" Height="28" Margin="286,305,0,0" VerticalAlignment="Top" Width="76"/>
+        <TextBox x:Name="textBoxIncreP1" HorizontalAlignment="Left" Height="28" Margin="367,305,0,0" TextAlignment="Right" Text="1" VerticalAlignment="Top" Width="102" MaxLines="1"/>
+        <Label x:Name="labelStartP1" Content="Start:" HorizontalAlignment="Left" Height="28" Margin="490,305,0,0" VerticalAlignment="Top" Width="43"/>
+        <TextBox x:Name="textBoxStartP1" HorizontalAlignment="Left" Height="28" Margin="538,305,0,0" TextAlignment="Right" Text="1" VerticalAlignment="Top" Width="108" MaxLines="1"/>
+        <Label x:Name="labelEndP1" Content="End:" HorizontalAlignment="Left" Height="28" Margin="668,305,0,0" VerticalAlignment="Top" Width="43"/>
+        <TextBox x:Name="textBoxEndP1" HorizontalAlignment="Left" Height="28" Margin="729,305,0,0" TextAlignment="Right" Text="1000000" VerticalAlignment="Top" Width="108" MaxLines="1"/>
+        <Label x:Name="labelParam2" Content="$$Param2$$" HorizontalAlignment="Left" Height="28" Margin="10,338,0,0" VerticalAlignment="Top" Width="111"/>
+        <ComboBox x:Name="comboBoxP2" HorizontalAlignment="Left" Margin="126,338,0,0" VerticalAlignment="Top" Width="143" Height="28" SelectionChanged="comboBoxP2_SelectionChanged">
+            <ComboBoxItem>Addition</ComboBoxItem>
+            <ComboBoxItem>Random</ComboBoxItem>
+        </ComboBox>
+        <Label x:Name="labelP2" Content="Increment:" HorizontalAlignment="Left" Height="28" Margin="286,338,0,0" VerticalAlignment="Top" Width="76"/>
+        <TextBox x:Name="textBoxIncreP2" HorizontalAlignment="Left" Height="28" Margin="367,338,0,0" TextAlignment="Right" Text="1" VerticalAlignment="Top" Width="102" MaxLines="1"/>
+        <Label x:Name="labelStartP2" Content="Start:" HorizontalAlignment="Left" Height="28" Margin="490,338,0,0" VerticalAlignment="Top" Width="43"/>
+        <TextBox x:Name="textBoxStartP2" HorizontalAlignment="Left" Height="28" Margin="538,338,0,0" TextAlignment="Right" Text="1" VerticalAlignment="Top" Width="108" MaxLines="1"/>
+        <Label x:Name="labelEndP2" Content="End:" HorizontalAlignment="Left" Height="28" Margin="668,338,0,0" VerticalAlignment="Top" Width="43"/>
+        <TextBox x:Name="textBoxEndP2" HorizontalAlignment="Left" Height="28" Margin="729,338,0,0" TextAlignment="Right" Text="1000000" VerticalAlignment="Top" Width="108" MaxLines="1"/>
+        <Label x:Name="labelParam3" Content="$$Param2$$" HorizontalAlignment="Left" Height="28" Margin="10,371,0,0" VerticalAlignment="Top" Width="111"/>
+        <ComboBox x:Name="comboBoxP3" HorizontalAlignment="Left" Margin="126,371,0,0" VerticalAlignment="Top" Width="143" Height="28" SelectionChanged="comboBoxP3_SelectionChanged">
+            <ComboBoxItem>Addition</ComboBoxItem>
+            <ComboBoxItem>Random</ComboBoxItem>
+        </ComboBox>
+        <Label x:Name="labelP3" Content="Increment:" HorizontalAlignment="Left" Height="28" Margin="286,371,0,0" VerticalAlignment="Top" Width="76"/>
+        <TextBox x:Name="textBoxIncreP3" HorizontalAlignment="Left" Height="28" Margin="367,371,0,0" TextAlignment="Right" Text="1" VerticalAlignment="Top" Width="102" MaxLines="1"/>
+        <Label x:Name="labelStartP3" Content="Start:" HorizontalAlignment="Left" Height="28" Margin="490,371,0,0" VerticalAlignment="Top" Width="43"/>
+        <TextBox x:Name="textBoxStartP3" HorizontalAlignment="Left" Height="28" Margin="538,371,0,0" TextAlignment="Right" Text="1" VerticalAlignment="Top" Width="108" MaxLines="1"/>
+        <Label x:Name="labelEndP3" Content="End:" HorizontalAlignment="Left" Height="28" Margin="668,371,0,0" VerticalAlignment="Top" Width="43"/>
+        <TextBox x:Name="textBoxEndP3" HorizontalAlignment="Left" Height="28" Margin="729,371,0,0" TextAlignment="Right" Text="1000000" VerticalAlignment="Top" Width="108" MaxLines="1"/>
+        <Label x:Name="labelIoTHub" Content="IoT Hub Connection String:" HorizontalAlignment="Left" Height="28" Margin="10,421,0,0" VerticalAlignment="Top" Width="157"/>
+        <TextBox x:Name="textBoxIotHub" HorizontalAlignment="Left" Height="28" Margin="186,421,0,0" Text="" VerticalAlignment="Top" Width="651" MaxLines="1"/>
+        <Label x:Name="labelDevices" Content="Device List (dev1,dev2,...):" HorizontalAlignment="Left" Height="28" Margin="10,454,0,0" VerticalAlignment="Top" Width="157"/>
+        <TextBox x:Name="textBoxDevices" HorizontalAlignment="Left" Height="28" Margin="186,454,0,0" Text="" VerticalAlignment="Top" Width="651" MaxLines="1"/>
+        <Label x:Name="labelLoop" Content="# of Loops per thread:" HorizontalAlignment="Left" Height="28" Margin="10,536,0,0" VerticalAlignment="Top" Width="157"/>
+        <TextBox x:Name="textBoxLoops" HorizontalAlignment="Left" Height="28" Margin="186,537,0,0" TextAlignment="Right" Text="1000000" VerticalAlignment="Top" Width="122" MaxLines="1"/>
+        <Button x:Name="buttonStart" Content="Start" HorizontalAlignment="Left" Margin="359,536,0,0" VerticalAlignment="Top" Width="92" Height="35" Background="#FF637DF6" FontSize="14" Click="buttonStart_Click"/>
+        <Button x:Name="buttonStop" Content="Stop" HorizontalAlignment="Left" Margin="475,536,0,0" VerticalAlignment="Top" Width="92" Height="35" Background="#FFDE6060" FontSize="14" Click="buttonStop_Click"/>
+        <Button x:Name="buttonFinish" Content="Finish" HorizontalAlignment="Left" Margin="743,536,0,0" VerticalAlignment="Top" Width="92" Height="35" Background="#FFE9E5DC" FontSize="14" Click="buttonFinish_Click"/>
+        <Button x:Name="buttonMessageCleanup" Content="Clean Messages" HorizontalAlignment="Left" Margin="594,536,0,0" VerticalAlignment="Top" Width="132" Height="35" FontSize="14" Background="#FF3BCB4C" Click="buttonMessageCleanup_Click" />
+        <Label x:Name="labelQStorageConnString" Content="Queue Storage Conn String:" HorizontalAlignment="Left" Height="28" Margin="10,490,0,0" VerticalAlignment="Top" Width="157"/>
+        <TextBox x:Name="textBoxQStorageConnString" HorizontalAlignment="Left" Height="28" Margin="186,490,0,0" Text="" VerticalAlignment="Top" Width="651" MaxLines="1" ToolTip="You can receive message from Queue Storage if this value is set"/>
+
+    </Grid>
+</Window>

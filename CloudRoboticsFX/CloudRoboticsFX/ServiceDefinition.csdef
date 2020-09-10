@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceDefinition name="CloudRoboticsFX" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2015-04.2.6">
+  <WorkerRole name="CloudRoboticsFX.Worker" vmsize="Standard_D1">
+    <ConfigurationSettings>
+      <Setting name="IoTHub.ConnectionString" />
+      <Setting name="IoTHub.ClassicConnectionString" />
+      <Setting name="IoTHub.HubName" />
+      <Setting name="IoTHub.StorageAccountName" />
+      <Setting name="IoTHub.StorageAccountKey" />
+      <Setting name="IoTHub.ConsumerGroupName" />
+      <Setting name="StorageQueue.SendEnabled" />
+      <Setting name="RbCache.ExpiredTimeSec" />
+      <Setting name="RbEnc.PassPhrase" />
+      <Setting name="SqlConnectionString" />
+      <Setting name="RbC2dLog.Enable" />
+      <Setting name="RbC2dLog.EventHubConnString" />
+      <Setting name="RbC2dLog.EventHubName" />
+      <Setting name="RbTrace.StorageAccountName" />
+      <Setting name="RbTrace.StorageAccountKey" />
+      <Setting name="RbTrace.StorageTableName" />
+      <Setting name="RbTrace.TraceLevel" />
+    </ConfigurationSettings>
+    <Imports>
+      <Import moduleName="RemoteAccess" />
+      <Import moduleName="RemoteForwarder" />
+    </Imports>
+  </WorkerRole>
+</ServiceDefinition>

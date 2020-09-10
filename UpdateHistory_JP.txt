@@ -1,0 +1,18 @@
+2017/03/06
+- CloudRoboticsApi (New)
+	- Cloud Robotics API のソースコード、インターフェース仕様、セットアップ手順を公開しました
+	- Pepper から顔認識 API、写真説明 API を呼び出す為のコード、ハンスオン資料を公開しました (JBS様の寄贈分)
+2017/03/05
+- CloudRoboticsUtil/CloudRoboticsUtil/RbAppLog.cs (New)
+	- App DLL から利用可能なログ出力クラスを追加
+- CloudRoboticsUtil
+	- すべての Nuget Package のバージョンをアップデートしました
+- CloudRoboticsFX
+	- すべての Nuget Package のバージョンをアップデートしました
+2017/03/01
+- CloudRoboticsFX/CloudRoboticsFX.Worker/RoboticsEventProcessor.cs
+	- RbHeader のチェックロジックを改良しました
+2017/02/15
+- CloudRoboticsFX/CloudRoboticsFX.Worker/RoboticsEventProcessor.cs 
+	- Bug fix. Cloud Roboitcs FX は、APP DLL のディプロイ後に、最新の DLL を動的ロードできない場合がありました
+

@@ -1,0 +1,18 @@
+2017/03/06
+- CloudRoboticsApi (New)
+        - Source code, interface specification and setup manual of Cloud Robotics API
+        - Source code and hands-on text on how to call Cloud Robotics Face API & Photo Description API from Pepper (provided by JBS)
+2017/03/05
+- CloudRoboticsUtil/CloudRoboticsUtil/RbAppLog.cs (New)
+	- Add a new common logging class for App DLL
+- CloudRoboticsUtil
+	- Update version of all Nuget Packages.
+- CloudRoboticsFX
+	- Update version of all Nuget Packages.
+2017/03/01
+- CloudRoboticsFX/CloudRoboticsFX.Worker/RoboticsEventProcessor.cs
+	- Improved RbHeader check logic
+2017/02/15
+- CloudRoboticsFX/CloudRoboticsFX.Worker/RoboticsEventProcessor.cs 
+	- Bug fix. Cloud Roboitcs FX had the case that it didn't dynamically load the newest app dll after being deployed.
+ 
